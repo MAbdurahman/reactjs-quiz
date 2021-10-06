@@ -253,6 +253,14 @@ p {
 	}
 }
 
+/*=============================================
+            form-container
+================================================*/
+div#form-container,
+div#loading-container,
+main#main-container {
+  margin-top: 10em;
+}
 
 
 
@@ -262,8 +270,32 @@ p {
 
 
 
+/*=============================================
+            Loader
+================================================*/
 
-
+.loading {
+	margin-top: 2em;
+	text-align: center;
+	color: var(--clr-grey-5);
+	/* 	padding: 3rem; */
+}
+.lds-dual-ring {
+	display: inline-block;
+	width: 80px;
+	height: 80px;
+}
+.lds-dual-ring:after {
+	content: ' ';
+	display: block;
+	width: 64px;
+	height: 64px;
+	margin: 8px;
+	border-radius: 50%;
+	border: 6px solid var(--clr-grey-5);
+	border-color: var(--clr-grey-5) transparent var(--clr-grey-5) transparent;
+	animation: app-logo-spin 1.2s linear infinite;
+}
 
 
 
