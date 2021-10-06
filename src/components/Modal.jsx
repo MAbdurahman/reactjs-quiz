@@ -1,9 +1,25 @@
-import React from 'react'
+import React from 'react';
+import { useGlobalContext } from './../utils/context';
 
 export default function Modal() {
-   return (
-      <div>
-         <h2>This is Modal Component</h2>
-      </div>
-   )
+	const { isModalOpen, closeModal, correct, questions } = useGlobalContext();
+   const score = ((correct / questions.length) * 100).toFixed(0)
+	return (
+		<div
+			className={`${
+				isModalOpen ? 'modal-container isOpen' : 'modal-container'
+			}`}
+		>
+			<div className='modal-content'>
+				<h3>{(score >= 70) ? 'congrats' : 'maybe next time'}</h3>
+				<p>
+					You answered {((correct / questions.length) * 100).toFixed(0)}%
+					of questions correctly
+				</p>
+				<button className='close-btn' onClick={closeModal}>
+					play again
+				</button>
+			</div>
+		</div>
+	);
 }
