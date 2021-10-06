@@ -31,12 +31,37 @@ function App() {
         </Header>
       );
 		}
+
+    const { question, incorrect_answers, correct_answer } = questions[0];
+    const answers = [ ...incorrect_answers, correct_answer]
 	return (
 		<Header>
-      <main id='main-container' className='container'>
-        <h2>This is main component</h2>
-      </main>
-    </Header>
+			<main id='main-container' className='container'>
+				<section className='quiz'>
+					<p className='correct-answers'>
+						correct answers: {correct}/{index}
+					</p>
+					<article className='wrapper'>
+						<h3 dangerouslySetInnerHTML={{ __html: question }} />
+						<div className='btn-container'>
+							{answers.map((answer, index) => {
+								return (
+									<button
+										key={index}
+										className='answer-btn'
+/* 										onClick={() =>
+											checkAnswer(correct_answer === answer)
+										} */
+										dangerouslySetInnerHTML={{ __html: answer }}
+									/>
+								);
+							})}
+						</div>
+					</article>
+          <button className="next-question">next question</button>
+				</section>
+			</main>
+		</Header>
 	);
 }
 
