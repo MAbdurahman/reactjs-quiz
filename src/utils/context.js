@@ -21,33 +21,50 @@ const AppProvider = ({ children }) => {
 	const [isModalOpen, setIsModalOpen] = useState(false);
 
 	//**************** functions ****************//
-   const fetchQuestions = async (url) => {
-      setLoading(true);
-      setWaiting(false)
+	const fetchQuestions = async url => {
+		setLoading(true);
+		setWaiting(false);
 
-      const response = await axios(url).catch(err => console.log(err));
-      console.log(response)
-      if (response) {
-         const data = response.data.results;
-         if (data.length > 0) {
-            setQuestions(data);
-            setLoading(false);
-            setWaiting(false);
-            setError(false);
+		const response = await axios(url).catch(err => console.log(err));
+		console.log(response);
+		if (response) {
+			const data = response.data.results;
+			if (data.length > 0) {
+				setQuestions(data);
+				setLoading(false);
+				setWaiting(false);
+				setError(false);
+			} else {
+				setWaiting(true);
+				setError(true);
+			}
+		} else {
+			setWaiting(true);
+		}
+	};
 
-         } else {
-            setWaiting(true);
-            setError(true);
-         }
-      } else {
-         setWaiting(true);
-         
-      }
-   }
+	const nextQuestion = () => {
+		setIndex(currentIndex => {
+			const index = currentIndex + 1;
+			if (index > questions.length - 1) {
+				//openModal
+				return 0;
+			} else {
+				return index;
+			}
+		});
+	};
 
-   useEffect(() => {
-      fetchQuestions(tempURL)
-   }, []);
+	const checkAnswer = value => {
+		if (value) {
+			setCorrect(currentState => currentState + 1);
+		}
+		nextQuestion();
+	};
+
+	useEffect(() => {
+		fetchQuestions(tempURL);
+	}, []);
 	return (
 		<AppContext.Provider
 			value={{
@@ -58,6 +75,8 @@ const AppProvider = ({ children }) => {
 				index,
 				correct,
 				isModalOpen,
+				nextQuestion,
+            checkAnswer
 			}}
 		>
 			{children}
