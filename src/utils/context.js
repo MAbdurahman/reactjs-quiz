@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 
 const table = {
    animals: 27,
@@ -10,9 +10,6 @@ const table = {
 };
 
 const API_ENDPOINT = 'https://opentdb.com/api.php?';
-const url = '';
-const tempURL =
-	'https://opentdb.com/api.php?amount=10&category=9&difficulty=easy&type=multiple';
 
 const AppContext = React.createContext();
 
@@ -95,9 +92,7 @@ const AppProvider = ({ children }) => {
 		const url = `${API_ENDPOINT}amount=${amount}&difficulty=${difficulty}&category=${table[category]}&type=multiple`;
 		fetchQuestions(url);
 	};
-	/* 	useEffect(() => {
-		fetchQuestions(tempURL);
-	}, []); */
+	
 	return (
 		<AppContext.Provider
 			value={{
