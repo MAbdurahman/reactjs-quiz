@@ -6,7 +6,7 @@ function App() {
     <div className="app">
       <header className="app-header">
         <img src={logo} className="app-logo" alt="logo" />
-        <h4>ReactJS - Quiz</h4>
+        <h3>ReactJS - Quiz</h3>
       </header>
     </div>
   );
