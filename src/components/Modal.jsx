@@ -11,7 +11,7 @@ export default function Modal() {
 			}`}
 		>
 			<div className='modal-content'>
-				<h3>{(score >= 70) ? 'congrats' : 'maybe next time'}</h3>
+				<h3>{(score >= 70) ? 'congrats' : 'try harder next time'}</h3>
 				<p>
 					You answered {((correct / questions.length) * 100).toFixed(0)}%
 					of questions correctly

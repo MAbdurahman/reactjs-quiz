@@ -16,7 +16,7 @@ const AppContext = React.createContext();
 const AppProvider = ({ children }) => {
 	//**************** variables ****************//
 	const [waiting, setWaiting] = useState(true);
-	const [loading, setLoading] = useState(false);
+	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(false);
 	const [questions, setQuestions] = useState([]);
 	const [index, setIndex] = useState(0);
